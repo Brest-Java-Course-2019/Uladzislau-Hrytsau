@@ -2,10 +2,10 @@ package com.epam.brest.course;
 
 import com.epam.brest.course.calculation.Calculation;
 import com.epam.brest.course.calculation.CalculationImpl;
-import com.epam.brest.course.calculation.model.DeliveryCostModel;
+import com.epam.brest.course.calculation.DeliveryCostModel;
+import com.epam.brest.course.provider.FileModel;
 import com.epam.brest.course.provider.FileReader;
 import com.epam.brest.course.provider.FileReaderImpl;
-import com.epam.brest.course.provider.model.FileModel;
 
 import java.math.BigDecimal;
 import java.util.Properties;
@@ -22,7 +22,6 @@ public class DeliveryCost {
     private static final String CONSOLE_READING = "File reading[y/n]?";
 
     private static final String YES = "y";
-    private static final String NO = "n";
 
     private static final String PREFIX_ENTER = "Enter";
 
@@ -70,16 +69,19 @@ public class DeliveryCost {
         key = scanner.nextLine();
 
         if (key.equals(YES)) {
-            FileModel fileModel = new FileModel();
-            fileModel.setFileName(FILE_NAME);
-            FileReader fileReader = new FileReaderImpl();
-            Properties properties = fileReader.read(fileModel);
-            deliveryCostModel.setWeight(Double.valueOf(properties.getProperty(WEIGHT)));
-            deliveryCostModel.setDistance(Double.valueOf(properties.getProperty(DISTANCE)));
-            deliveryCostModel.setSecurityLevel(Double.valueOf(properties.getProperty(SECURITY_LEVEL)));
-            System.out.println("testing");
-            result = calculation.calculate(deliveryCostModel);
-            System.out.println("Cost is ".concat(result.toString()).concat($));
+            try {
+                FileModel fileModel = new FileModel();
+                fileModel.setFileName(FILE_NAME);
+                FileReader fileReader = new FileReaderImpl();
+                Properties properties = fileReader.read(fileModel);
+                deliveryCostModel.setWeight(Double.valueOf(properties.getProperty(WEIGHT)));
+                deliveryCostModel.setDistance(Double.valueOf(properties.getProperty(DISTANCE)));
+                deliveryCostModel.setSecurityLevel(Double.valueOf(properties.getProperty(SECURITY_LEVEL)));
+                result = calculation.calculate(deliveryCostModel);
+                System.out.println("Cost is ".concat(result.toString()).concat($));
+            } catch (IllegalArgumentException e) {
+                System.out.println("error");
+            }
         }
 
 

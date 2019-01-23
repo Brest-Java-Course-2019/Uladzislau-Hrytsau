@@ -1,4 +1,4 @@
-package com.epam.brest.course.provider.model;
+package com.epam.brest.course.provider;
 
 /**
  * The type File model.

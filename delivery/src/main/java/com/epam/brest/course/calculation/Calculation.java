@@ -1,7 +1,5 @@
 package com.epam.brest.course.calculation;
 
-import com.epam.brest.course.calculation.model.DeliveryCostModel;
-
 import java.math.BigDecimal;
 
 /**

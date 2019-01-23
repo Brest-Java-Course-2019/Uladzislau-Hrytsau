@@ -1,7 +1,5 @@
 package com.epam.brest.course.provider;
 
-import com.epam.brest.course.provider.model.FileModel;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;

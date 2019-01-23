@@ -1,4 +1,4 @@
-package com.epam.brest.course.calculation.model;
+package com.epam.brest.course.calculation;
 
 import java.math.BigDecimal;
 
@@ -24,6 +24,8 @@ public class DeliveryCostModel {
      * @param distance the distance
      */
     public DeliveryCostModel(Double weight, Double distance) {
+        if (weight <= 0) throw new IllegalArgumentException("Weight should not be negative");
+        if (distance <= 0) throw new IllegalArgumentException("Distance should not be negative");
         this.weight = BigDecimal.valueOf(weight);
         this.distance = BigDecimal.valueOf(distance);
     }
@@ -36,6 +38,9 @@ public class DeliveryCostModel {
      * @param securityLevel the security level
      */
     public DeliveryCostModel(Double weight, Double distance, Double securityLevel) {
+        if (weight <= 0) throw new IllegalArgumentException("Weight should not be negative");
+        if (distance <= 0) throw new IllegalArgumentException("Distance should not be negative");
+        if (securityLevel <= 0) throw new IllegalArgumentException("Weight should not be negative");
         this.weight = BigDecimal.valueOf(weight);
         this.distance = BigDecimal.valueOf(distance);
         this.securityLevel = BigDecimal.valueOf(securityLevel);
@@ -56,6 +61,7 @@ public class DeliveryCostModel {
      * @param securityLevel the security level
      */
     public void setSecurityLevel(Double securityLevel) {
+        if (securityLevel <= 0) throw new IllegalArgumentException("Weight should not be negative");
         this.securityLevel = BigDecimal.valueOf(securityLevel);
     }
 
