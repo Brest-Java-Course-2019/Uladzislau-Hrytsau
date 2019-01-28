@@ -6,6 +6,8 @@ import com.epam.brest.course.calculation.DeliveryCostModel;
 import com.epam.brest.course.provider.FileModel;
 import com.epam.brest.course.provider.FileReader;
 import com.epam.brest.course.provider.FileReaderImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.math.BigDecimal;
 import java.util.Properties;
@@ -16,6 +18,8 @@ import java.util.Scanner;
  */
 public class DeliveryCost {
 
+    private static final Logger LOGGER = LogManager.getLogger();
+
     private static final String SELECT = "Select data reading method";
     private static final String POSTFIX = ", please. ";
     private static final String FILE_READING = "Console reading[y/n]?";
@@ -23,7 +27,7 @@ public class DeliveryCost {
 
     private static final String YES = "y";
 
-    private static final String PREFIX_ENTER = "Enter";
+    private static final String PREFIX_ENTER = "Enter ";
 
     private static final String WEIGHT = "weight";
     private static final String DISTANCE = "distance";
@@ -61,7 +65,7 @@ public class DeliveryCost {
                 System.out.println("Cost is ".concat(result.toString()).concat($));
                 System.exit(0);
             } catch (IllegalArgumentException e) {
-                System.out.println("error");
+                LOGGER.error("error");
             }
         }
 
@@ -80,7 +84,7 @@ public class DeliveryCost {
                 result = calculation.calculate(deliveryCostModel);
                 System.out.println("Cost is ".concat(result.toString()).concat($));
             } catch (IllegalArgumentException e) {
-                System.out.println("error");
+                LOGGER.error("error");
             }
         }
 
